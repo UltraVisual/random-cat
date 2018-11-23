@@ -11,7 +11,7 @@ const getCatGif = async () => {
   return {
     item: [
       {
-        text: response.data.data.images.original
+        text: response.data.data.images.original.url
       }
     ]
   };
