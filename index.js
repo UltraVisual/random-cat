@@ -2,14 +2,17 @@ const { send } = require('micro');
 const axios = require("axios");
 const API_KEY = process.env.API_KEY;
 const TAG = "cat";
-const API_URL = `http://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=${TAG}&rating=R`;
+const API_URL = `https://api.thecatapi.com/v1/images/search?size=full`;
 
 const getCatGif = async () => {
   const response = await axios.get(API_URL, {
     headers: { Accept: "application/json" }
   });
 
-  return response.data.data.images.original.url;
+  const { log } = console;
+  log('SHANE:', response);
+
+  return response.data[0].url;
 };
 
 module.exports = async ({ url }, res) => {
