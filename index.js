@@ -1,3 +1,4 @@
+const { send } = require('micro');
 const axios = require("axios");
 const API_KEY = process.env.API_KEY;
 const TAG = "cat";
@@ -8,13 +9,7 @@ const getCatGif = async () => {
     headers: { Accept: "application/json" }
   });
 
-  return {
-    item: [
-      {
-        text: response.data.data.images.original.url
-      }
-    ]
-  };
+  return response.data.data.images.original.url;
 };
 
 module.exports = async ({ url }, res) => {
@@ -24,5 +19,9 @@ module.exports = async ({ url }, res) => {
 
   const gif = await getCatGif();
 
-  res.end(JSON.stringify(gif));
+  res.writeHead(302, {
+	'Location': gif
+  });
+
+  send(res);
 };
