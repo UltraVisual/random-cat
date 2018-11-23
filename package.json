@@ -1,0 +1,13 @@
+{
+  "name": "random-cat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "micro"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "micro": "^9.3.3"
+  }
+}
